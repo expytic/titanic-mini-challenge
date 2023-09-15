@@ -23,7 +23,7 @@ load_data = function()
 main = function()
 {
   titanic_data <- load_data()
-
+  glimpse(titanic_data)
   class_survival_chances(titanic_data)
   gender_age_survival_chances(titanic_data)
   price_survival_chances(titanic_data)

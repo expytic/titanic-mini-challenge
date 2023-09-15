@@ -29,7 +29,13 @@ class_survive %>% ggplot(aes(x=Pclass, y=Survived, fill=as.factor(Pclass))) +
 #Which sex and age survived
 survival_data <- data %>% group_by(Sex, Age) %>% summarise(Survived = mean(Survived, na.rm = TRUE))
 survival_data %>% ggplot(aes(x=Age, y = Survived, colour = Sex)) + geom_point()
-  
+
+survival_data <- survival_data %>% filter(Age == 25) %>% filter(Sex == "female")
+survival_data %>% ggplot(aes(x=Age, y=Survived, fill=as.factor(Age))) + 
+  geom_bar(stat = "identity") +
+  scale_fill_brewer(palette = "Set1") +
+  theme(legend.position="none")
+
 #Which ticket price survived
 price_survive <- data %>% summarise(.by = Fare, Survived = mean(Survived, na.rm = TRUE))
 price_survive %>% ggplot(aes(x=Fare, y = Survived)) + geom_point()
